@@ -15,6 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+import com.firebase.client.Firebase;
+import com.firebase.client.Query;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.firebase.client.DataSnapshot;
+
 
 
 public class SearchActivity extends ActionBarActivity {
@@ -37,6 +44,24 @@ public class SearchActivity extends ActionBarActivity {
     {
         EditText etId = (EditText) findViewById(R.id.EditTextId);
         String idToSearch = etId.getText().toString();
+
+        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/student");
+        Query queryRef = myFirebaseRef.orderByChild("studentId").equalTo(idToSearch);
+
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot == null || snapshot.getValue() == null)
+                    Toast.makeText(SearchActivity.this, "No record found", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(SearchActivity.this, snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError error) {
+            }
+        });
+
     }
 
     public void addRecord(View button) {
