@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/first");
+        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/second");
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         EditText etMsg = (EditText) findViewById(R.id.EditTextMsg);
         String msg = etMsg.getText().toString();
 
-        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/second");
+        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/first");
         myFirebaseRef.setValue(msg);
 
         /*Student student = new Student();
