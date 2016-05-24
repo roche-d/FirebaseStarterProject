@@ -8,6 +8,8 @@
  */
 package com.software.helloworld;
 
+import android.content.Intent;
+
 import com.firebase.client.Firebase;
 
 public class StarterApplication extends android.app.Application {
@@ -18,5 +20,16 @@ public class StarterApplication extends android.app.Application {
     super.onCreate();
 
     Firebase.setAndroidContext(this);
+
+    Intent intent = new Intent(StarterApplication.this, FirebaseService.class);
+    startService(intent);
+  }
+
+  @Override
+  public void onTerminate() {
+    super.onTerminate();
+
+    Intent intent = new Intent(StarterApplication.this, FirebaseService.class);
+    stopService(intent);
   }
 }
