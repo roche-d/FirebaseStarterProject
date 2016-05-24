@@ -8,8 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +24,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/first");
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String data = dataSnapshot.getValue(String.class);
+                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
     }
 
@@ -33,21 +50,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void submit(View button) {
 
-        EditText etName = (EditText) findViewById(R.id.EditTextName);
+        /*EditText etName = (EditText) findViewById(R.id.EditTextName);
         EditText etId = (EditText) findViewById(R.id.EditTextId);
         String name = etName.getText().toString();
-        String id = etId.getText().toString();
+        String id = etId.getText().toString();*/
 
-        Student student = new Student();
+        EditText etMsg = (EditText) findViewById(R.id.EditTextMsg);
+        String msg = etMsg.getText().toString();
+
+        Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/second");
+        myFirebaseRef.setValue(msg);
+
+        /*Student student = new Student();
         student.setName(name);
         student.setStudentId(id);
 
         Firebase myFirebaseRef = new Firebase("https://roche-d-110.firebaseio.com/student");
-        student.setStudentId(id); myFirebaseRef.child(student.getStudentId()).setValue(student);
+        student.setStudentId(id); myFirebaseRef.child(student.getStudentId()).setValue(student);*/
 
-        Intent output = new Intent();
-        setResult(RESULT_OK, output);
-        finish();
+        //Intent output = new Intent();
+        //setResult(RESULT_OK, output);
+        //finish();
     }
 
 

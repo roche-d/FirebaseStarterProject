@@ -31,20 +31,12 @@
             android:textSize="10pt">
         </TextView>
         <EditText
-            android:id="@+id/EditTextName"
+            android:id="@+id/EditTextMsg"
             android:layout_height="wrap_content"
             android:hint="@string/name"
             android:inputType="textPersonName"
             android:layout_width="fill_parent">
         </EditText>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/studentId"
-            android:ems="10"
-            android:id="@+id/EditTextId" />
 
         <Button
             android:id="@+id/Submit"

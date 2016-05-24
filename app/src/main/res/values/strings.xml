@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Hello World</string>
-    <string name="name">Student Name</string>
+    <string name="name">Message content</string>
     <string name="studentId">Student ID</string>
     <string name="submit">Submit</string>
     <string name="search">Search</string>
     <string name="addNew">Add Record</string>
-    <string name="formTitle">Student Entry Form</string>
+    <string name="formTitle">Message</string>
     <string name="action_settings">Settings</string>
 </resources>
